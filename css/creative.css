@@ -170,7 +170,7 @@ header.masthead {
    padding-top: 10rem;
    padding-bottom: calc(10rem - 56px);
 /*<<<<<<< HEAD*/
-  background-image: url("../img/header.jpg");
+  background-image: url("../anne-moshyedi.github.io/img/header.jpg");
 /*    background-image: none;
 /*    background-color: blue;*/
 /*    background: url("../anne-moshyedi.github.io/img/header.jpg");*/
@@ -184,7 +184,7 @@ header.masthead {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover; */
+  background-size: cover;
 }
 
 header.masthead hr {
