@@ -169,7 +169,7 @@ img::-moz-selection {
 header.masthead {
   padding-top: 10rem;
   padding-bottom: calc(10rem - 56px);
-  background-image: url("../anne-moshyedi.github.io/img/header.JPG");
+  background-image: url("/anne-moshyedi.github.io/img/personal_pic.jpg");
   background-position: center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
