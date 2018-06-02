@@ -167,18 +167,23 @@ img::-moz-selection {
 }
 
 header.masthead {
-  padding-top: 10rem;
+/*   padding-top: 10rem;
   padding-bottom: calc(10rem - 56px);
+<<<<<<< HEAD
 /*  background-image: url("../img/header.jpg");*/
 /*    background-image: none;*/
 /*    background-color: blue;*/
 /*    background: url("../img/header.jpg");*/
     background: blue;
+=======
+  background-image: none;
+>>>>>>> b8bfcd880c5f06812dab49fe9a21325ea474b196
   background-position: center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
+  background-size: cover; */
+  background-color: #F05F40 !important;
 }
 
 header.masthead hr {
