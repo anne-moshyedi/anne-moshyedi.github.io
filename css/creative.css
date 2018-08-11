@@ -29,6 +29,15 @@ a:hover {
   color: #f05f40;
 }
 
+div.link:hover{
+    font-weight: bold;
+    color: lightblue;
+}
+
+a.sublink:hover{
+    color: whitesmoke;
+}
+
 h1,
 h2,
 h3,

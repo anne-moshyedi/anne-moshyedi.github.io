@@ -54,11 +54,9 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#resume">Resume</a>
             </li>
-<!--
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
             </li>
--->
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
             </li>
@@ -160,22 +158,22 @@
           
  <section id="resume">
       <div class="container">
-        <div class="row">
+        <div style="margin-left: auto" class="row">
           <div class="col-lg-12 text-center">
-            <h2 class="section-heading">Resume</h2>
+            <h2 style="font-weight: bold" class="section-heading">Resume</h2>
             <h4><a id="pdf" href="Anne%20Moshyedi%20Resume-%201.pdf" download>Download PDF</a></h4>
             <hr class="my-4">
             </div>
-            <div>
-            <h1 class="mb-0">Anne
+            <div style="position: relative">
+            <h1 style="font-weight: bold"class="mb-0">Anne
             <span class="text-primary">Moshyedi</span>
             </h1>
+                <div class="subheading mb-5" style="position: relative">1 Sprinklewood Court · Potomac, MD 20854 · (301) 529-6024 ·
+                    <a href="mailto:annemoshyedi@gmail.com">annemoshyedi@gmail.com</a>
+                </div>
             </div>
-              <div class="subheading mb-5">1 Sprinklewood Court · Potomac, MD 20854 · (301) 529-6024 ·
-            <a href="mailto:annemoshyedi@gmail.com">annemoshyedigemail.com</a>
-          </div>
         <div class="my-auto">
-          <h2 class="mb-5">Work Experience</h2>
+          <h2 style="font-weight: bold" class="mb-5">Work Experience</h2>
           <div class="resume-item d-flex flex-column flex-md-row mb-5">
             <div class="resume-content mr-auto">
               <h3 class="mb-0">Swift</h3>
@@ -198,7 +196,7 @@
             </div>
           </div>
 
-        <h2 class="mb-5">Education</h2>
+        <h2 style="font-weight: bold" class="mb-5">Education</h2>
             <div class="resume-item d-flex flex-column flex-md-row mb-5">
             <div class="resume-content mr-auto">
               <h3 class="mb-0">University of Virginia, McIntire School of Commerce</h3>
@@ -283,103 +281,134 @@
 -->
 
 <!--
-    <section class="p-0" id="portfolio">
+      <section class="bg-primary" class="p-0" id="portfolio">
+          <div class="container-fluid p-0">
+              <div class="row no-gutters popup-gallery">
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    <p style="color: blue" >stuff</p>Some stuff here
+                                </div>
+                            </div>
+                        </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+-->
+
+    <section class="bg-primary" id="portfolio">
       <div class="container-fluid p-0">
-        <div class="row no-gutters popup-gallery">
+        <div class="row no-gutters">
+          <div class="col-lg-4 col-sm-6" >
+            <div class="popup-gallery">
+                <a class="portfolio-box" href="game.png">
+                <img class="img-fluid" href="game.png" alt="">
+                  <div style="opacity: 1" class="portfolio-box-caption">
+                    <div class="portfolio-box-caption-content link">
+                      <div style="font-weight: regular" class="project-category link">
+                        First Project
+                      </div>
+                      <div class="project-name link">
+                        Christmas Game
+                      </div>
+                    </div>
+                  </div>
+                </a>
+            </div>
+              <a class="portfolio-box sublink" href="https://github.com/anne-moshyedi/Christmas_Game#christmas_game">
+                <div style="margin-top: auto; color: black">
+                <img class="img-fluid" href="https://github.com/anne-moshyedi/Christmas_Game#christmas_game" alt="">
+                  <div style="opacity: .8; position: relative; color: black" class="portfolio-box-caption">
+<!--                    <div class="portfolio-box-caption-content">-->
+                      <div class="project-name text-faded sublink">
+                        see the code
+                      </div>
+<!--                    </div>-->
+                      </div>
+                  </div>
+                </a>
+          </div>
+            <div class="col-lg-4 col-sm-6" >
+            <div class="popup-gallery">
+                <a class="portfolio-box" href="nlp.png">
+                <img class="img-fluid" href="nlp.png" alt="">
+                  <div style="opacity: 1" class="portfolio-box-caption">
+                    <div class="portfolio-box-caption-content link">
+                      <div style="font-weight: regular" class="project-category link">
+                        Natural Language Processing
+                      </div>
+                      <div class="project-name link">
+                        Entity Resolution with ML
+                      </div>
+                    </div>
+                  </div>
+                </a>
+            </div>
+              <a class="portfolio-box sublink" href="https://github.com/anne-moshyedi/Natural_Language_Processing">
+                <div style="margin-top: auto; color: black">
+                <img class="img-fluid" href="https://github.com/anne-moshyedi/Natural_Language_Processing" alt="">
+                  <div style="opacity: .8; position: relative; color: black" class="portfolio-box-caption">
+<!--                    <div class="portfolio-box-caption-content">-->
+                      <div class="project-name text-faded sublink">
+                        see the code
+                      </div>
+<!--                    </div>-->
+                      </div>
+                  </div>
+                </a>
+          </div>
+            
+            <div class="col-lg-4 col-sm-6" >
+            <div class="popup-gallery">
+                <a class="portfolio-box" href="shootings.png">
+                <img class="img-fluid" href="shootings.png" alt="">
+                  <div style="opacity: 1" class="portfolio-box-caption">
+                    <div class="portfolio-box-caption-content link">
+                      <div style="font-weight: regular" class="project-category link">
+                        Data Visualization
+                      </div>
+                      <div class="project-name link">
+                        Mass Shootings in America
+                      </div>
+                    </div>
+                  </div>
+                </a>
+            </div>
+              <a class="portfolio-box sublink" href="https://github.com/anne-moshyedi/Data_Visualization">
+                <div style="margin-top: auto; color: black">
+                <img class="img-fluid" href="https://github.com/anne-moshyedi/Data_Visualization" alt="">
+                  <div style="opacity: .8; position: relative; color: black" class="portfolio-box-caption">
+<!--                    <div class="portfolio-box-caption-content">-->
+                      <div class="project-name text-faded sublink">
+                        see the code
+                      </div>
+<!--                    </div>-->
+                      </div>
+                  </div>
+                </a>
+          </div>
+<!--
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="img/portfolio/fullsize/1.jpg">
-              <img class="img-fluid" src="img/portfolio/thumbnails/1.jpg" alt="">
-              <div class="portfolio-box-caption">
+            <a class="portfolio-box" href="nlp.png">
+              <img class="img-fluid" href="nlp.png" alt="">
+              <div style="opacity: 1" class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
                   <div class="project-category text-faded">
-                    Category
+                    Natural Language Processing
                   </div>
                   <div class="project-name">
-                    Project Name
+                    Entity Resolution with ML
                   </div>
                 </div>
               </div>
             </a>
           </div>
-          <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="img/portfolio/fullsize/2.jpg">
-              <img class="img-fluid" src="img/portfolio/thumbnails/2.jpg" alt="">
-              <div class="portfolio-box-caption">
-                <div class="portfolio-box-caption-content">
-                  <div class="project-category text-faded">
-                    Category
-                  </div>
-                  <div class="project-name">
-                    Project Name
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="img/portfolio/fullsize/3.jpg">
-              <img class="img-fluid" src="img/portfolio/thumbnails/3.jpg" alt="">
-              <div class="portfolio-box-caption">
-                <div class="portfolio-box-caption-content">
-                  <div class="project-category text-faded">
-                    Category
-                  </div>
-                  <div class="project-name">
-                    Project Name
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="img/portfolio/fullsize/4.jpg">
-              <img class="img-fluid" src="img/portfolio/thumbnails/4.jpg" alt="">
-              <div class="portfolio-box-caption">
-                <div class="portfolio-box-caption-content">
-                  <div class="project-category text-faded">
-                    Category
-                  </div>
-                  <div class="project-name">
-                    Project Name
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="img/portfolio/fullsize/5.jpg">
-              <img class="img-fluid" src="img/portfolio/thumbnails/5.jpg" alt="">
-              <div class="portfolio-box-caption">
-                <div class="portfolio-box-caption-content">
-                  <div class="project-category text-faded">
-                    Category
-                  </div>
-                  <div class="project-name">
-                    Project Name
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="img/portfolio/fullsize/6.jpg">
-              <img class="img-fluid" src="img/portfolio/thumbnails/6.jpg" alt="">
-              <div class="portfolio-box-caption">
-                <div class="portfolio-box-caption-content">
-                  <div class="project-category text-faded">
-                    Category
-                  </div>
-                  <div class="project-name">
-                    Project Name
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
+-->
         </div>
       </div>
     </section>
--->
 
 <!--
     <section class="bg-dark text-white">

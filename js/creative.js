@@ -61,18 +61,37 @@
   $('.popup-gallery').magnificPopup({
     delegate: 'a',
     type: 'image',
-    tLoading: 'Loading image #%curr%...',
+    tLoading: 'Loading project description...',
     mainClass: 'mfp-img-mobile',
     gallery: {
+      projNum: 1,
       enabled: true,
       navigateByImgClick: true,
       preload: [0, 1]
     },
     image: {
-      tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
+      tError: '<a href="%url%">The project description</a> could not be loaded.'
     }
   });
 })(jQuery); // End of use strict
+
+//  // Magnific popup calls
+//  $('.popup-gallery2').magnificPopup({
+//    delegate: 'a',
+//    type: 'image',
+//    tLoading: 'Loading project description...',
+//    mainClass: 'mfp-img-mobile',
+//    gallery: {
+//      projNum: 2,
+//      enabled: true,
+//      navigateByImgClick: true,
+//      preload: [0, 1]
+//    },
+//    image: {
+//      tError: '<a href="%url%">The project description</a> could not be loaded.'
+//    }
+//  });
+//})(jQuery); // End of use strict
     
     // Typewriter effect
     var TxtType = function(el, toRotate, period) {

@@ -1698,10 +1698,22 @@ $.magnificPopup.registerModule('gallery', {
 
 				if(gSt.navigateByImgClick) {
 					mfp.wrap.on('click'+ns, '.mfp-img', function() {
-						if(mfp.items.length > 1) {
-							mfp.next();
-							return false;
-						}
+                        if(mfp.index == 0){
+                            window.location.href = 'https://github.com/anne-moshyedi/Christmas_Game#christmas_game.com';
+
+                        }
+                        if(mfp.index == 1){
+                            window.location.href = 'https://github.com/anne-moshyedi/Natural_Language_Processing';
+
+                        }
+                        if(mfp.index == 2){
+                            window.location.href = 'https://github.com/anne-moshyedi/Data_Visualization';
+
+                        }
+//						if(mfp.items.length > 1) {
+//							mfp.next();
+//							return false;
+//						}
 					});
 				}
 

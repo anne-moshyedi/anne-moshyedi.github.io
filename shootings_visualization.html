@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style>
+            .bar {
+              fill: steelblue;
+            }
+
+            .bar:hover {
+              fill: brown;
+            }
+
+            .axis--x path {
+              display: none;
+            }
+            
+            circle {
+                fill: yellow;
+                opacity: .65;
+            }
+            
+            axis{
+                stroke: white;
+            }
+            
+            text{
+                font-family: "Futura";
+            }
+            
+            #y{
+                color: pink;
+            }
+            
+            p{
+                font-family: "Times New Roman", Times, serif;
+            }
+            
+            .dropbtn {
+                background-color: white;
+                color: black;
+                padding: 16px;
+                font-size: 16px;
+                border: none;
+                cursor: pointer;
+            }
+            .options {
+                display: none;
+                position: absolute;
+                background-color: #f1f1f1;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+            
+            .options option {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+            
+            body{
+                fill:white;
+                background-color:black;
+            }
+            
+            strong{
+                color: white;
+            }
+            
+            #colorKey{
+                color: white;
+            }
+            
+            #info{
+                position:absolute;
+                top: 0;
+                left: 0;
+                background: white;
+                box-shadow: 2px 2px 2px #cccccc;
+                padding: 5px;
+                font-size: 12px;
+                visibility: hidden;
+                font-family: "Futura";
+            }
+            
+            
+            .annotation {
+                visibility:hidden; 
+            }
+            
+            /* Use style classes to set colors by general motives type */
+            
+            .Domesticdispute {fill:#0000ff; background-color:#0000ff; color: #dddddd;}        /* blue */
+            .Druguse {fill: #00A591; background-color:#00A591;}                          /* brown */
+            .DruguseFinancialdifficulties {fill:#9400D3; background-color:#E8BD0C;}                          /* orange */
+            .ExpulsionSuspension {fill:#00ffff; background-color:#00ffff;}                      /* cyan */
+            .Failure {fill:#F3F315; background-color:#F3F315;}                   /* brown */
+            .Financialdifficulties {fill: #FF66FF; background-color: #FF66FF;}                       /* pink */
+            .Financialdispute {fill: #FF66FF; background-color: #FF66FF;}                      /* Pale pink */
+            .Gender {fill: #888888; background-color: #888888;}                   /* gray */
+            .Harassment {fill: #aa0000; background-color: #aa0000;}                 /* red */
+            .Legaldispute {fill: #6B5B95; background-color: #6B5B95;}  
+            .Mentalillness {fill:#00ff00; background-color:#00ff00;}                      /* green */           
+            .Multiplemotives {fill: #2E4A62; background-color: #2E4A62;}
+            .PoliticalReligiousideals {fill: #DC4C46; background-color: #DC4C46;}                 
+            .Race {fill: #005960; background-color: #005960;}
+            .Rejection {fill: #4F84C4; background-color: #4F84C4;}                 
+            .Robbery {fill: #D2691E; background-color: #D2691E;}
+            .Socialdispute {fill: #578CA9; background-color: #578CA9;}                 
+            .TerminatedDeniedReprimanded {fill: #F6D155; background-color: #F6D155;}
+            .Unknown {fill: #A6A277; background-color:#A6A277; color: #A6A277;}         /* black 
+            */
+
+        </style>
+
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script>
+            var data;
+            var x,y;
+            
+            function draw() {
+                var svg = d3.select("svg"),
+                    margin = {top: 20, right: 20, bottom: 30, left: 40},
+                    width = +svg.attr("width") - margin.left - margin.right,
+                    height = +svg.attr("height") - margin.top - margin.bottom;
+
+                var axis = svg.append("line")
+                    .attr("x1", 0)
+                    .attr("y1", height/2 + height/5)
+                    .attr("x2", width)
+                    .attr("y2", height/2 + height/5)
+                    .attr("stroke", "white")
+                    .attr("opacity", "0.6");
+                
+/*                var txt = svg.selectAll("text")
+                    .append("text")
+                    .attr("x",100)
+                    .attr("y", 100);*/
+                
+//                var svg2 = d3.select("svg2"),
+//                    margin = {top: 20, right: 20, bottom: 30, left: 40},
+//                    width = +svg.attr("width") - margin.left - margin.right,
+//                    height = +svg.attr("height") - margin.top - margin.bottom;
+
+                x = d3.scaleTime().domain([new Date(1965,00,01), new Date(2017,00,01)]).range([0, width]);
+                y = d3.scaleLinear().domain(0,75).range([height, 0]);
+
+//                var g = svg.append("g")
+//                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+//                    .attr("class", "killed");
+//                var g2 = svg.append("g")
+//                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+//                    .attr("class", "injured");
+//               
+//                var g2 = svg.append("g")
+//                    .data(data)
+//                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+//                
+                /*this will select all the groups and bind data to them*/
+                var groups = svg.selectAll("g")
+                    .data(data)
+                    .enter()
+                    .append("g")
+                    .on("mouseover", showInfo)
+                    .on("mouseout", hideInfo);
+                    //.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                
+                groups.each(function(d,i){
+                    for (var i = 3; i<= +d["Number of Victims Injured"]*6; i+=6){
+                        d3.select(this).append('circle')
+                            .attr("cx", function(d) {return x(new Date(d.Date))})
+                            .attr("cy", function(d) {return (height/2 + height/5) - i})
+                            .attr("r", 3)
+                            /*set the class to the type of motive*/
+                            .attr("class", function(d) {
+                                        return d["Possible Motive - General"].replace(/\s/g, "").replace(/\//g, "") + " " + d["Relationship to Incident Location"];
+                                    });
+                    }
+                });
+                
+                //make a variable to group together the points of victims killed
+                var groups2 = svg.selectAll("g")
+                    .data(data)
+                    .append("g")
+                    .on("mouseover", showInfo)
+                    .on("mouseout", hideInfo);
+//                    .on("mouseover", function(d){
+//                        return d["Possible Motive - General"].replace(/\s/g, "").replace(/\//g, "");
+                    //.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+                
+                groups2.each(function(d,i){
+                    //var test = d["Number of Victim Fatalities"];
+                    //console.log(d);
+                    //console.log(test);
+                    for (var i = 3; i<= +d["Number of Victim Fatalities"]*6; i+=6){
+                        d3.select(this).append('circle')
+                            .attr("cx", function(d) {return x(new Date(d.Date))})
+                            .attr("cy", function(d) {return (height/2 + height/5) + i})
+                            .attr("r", 3)
+                            /*set the class to the type of motive*/
+                            .attr("class", function(d) {
+                                        return d["Possible Motive - General"].replace(/\s/g, "").replace(/\//g, "")+ " " + d["Relationship to Incident Location"];
+                                    });
+                    }
+                });
+                
+//                var circle = g.selectAll("circle")
+//                    .data(data)
+//                    .enter().append("circle")
+//                        .attr("cx", function(d) {return x(new Date(d.Date))})
+//                        .attr("cy", function(d) {return height - +d["Number of Victims Injured"]})
+//                        .attr("r", 3)
+//                        /*set the class to the type of motive*/
+//                        .attr("class", function(d) {
+//                                    return d["Possible Motive - General"].replace(/\s/g, "").replace(/\//g, "");
+//                                });
+                    
+                
+            }
+            
+            function getData() {
+                d3.csv("shootings.csv", function(d) {
+                    data = d;
+                    draw();
+                });
+            }
+            
+            function dimAll(){
+                d3.selectAll("circle").style("opacity", "0.15");
+                d3.selectAll(".annotation")
+                    .style("visibility", "hidden");
+            }
+                
+            function showAll(){
+                d3.selectAll("circle").style("opacity", "0.65");
+            }
+            
+            function filter(key){
+                dimAll();
+                d3.selectAll("."+key).style("opacity", "0.65");
+                if (key == "all"){
+                    showAll();
+                }
+                d3.selectAll("."+key+ ".annotation")
+                    .style("visibility", "visible");
+            }
+            
+            function showInfo(d,i){
+                d3.select("#title").text(data[i]["Title"])
+                    .style("font-weight", "bold");
+                d3.select("#location").text("Location: " + data[i]["Location"]);
+                d3.select("#date").text("Date: " + data[i]["Date"]);
+                d3.select("#motive").text("Motive: " + data[i]["Possible Motive - General"]);
+                d3.select("#relationship").text("Relationship to Location of Incident: " + data[i]["Relationship to Incident Location"]);
+                d3.select("#injured").text("Victims Injured: " + data[i]["Number of Victims Injured"]);
+                d3.select("#killed").text("Victims Killed: " + data[i]["Number of Victim Fatalities"]);
+                d3.select("#info")
+                    .style("top", d3.event.pageY + 2 + "px")
+                    .style("left", d3.event.pageX + 2 + "px")
+                    .style("visibility","visible");
+                d3.select(this)
+                    .style("stroke","white")
+                    .style("opacity","1")
+                    .style("stroke-width","1.5");
+            }
+            
+            function hideInfo(d,i){
+                d3.select("#info")
+                    .style("visibility","hidden")
+                d3.select(this)
+                    .style("stroke","")
+                    .style("opacity","")
+                    .style("stroke-width","");
+            }
+            
+        </script>
+
+    </head>
+    
+    <body onload="getData()">
+        <svg id="graph" width="1450" height="600">
+            <text x=400 y= 60 style="font-size: 28">Why are they happening? And how can we stop them?</text>
+            <text x=500 y=100 style="font-size: 22">Mass Shootings in America from 1966 to 2016</text>
+            <text x="720" y="575">Date</text>
+            <text id="y" x=25 y=435 transform="rotate(270,25,435)">Killed</text>
+            <text id="y" x=25 y=375 transform="rotate(270,25,375)">Injured</text>
+
+            <g class="school annotation">
+                <text style="color:white" x=5 y=515>So many of the mass shootings that have occurred in America can be related to mental illness. </text>
+                <text style="color:white" x=5 y=535>Here, it is obvious that so many of those mental illness related shootings occur at schools. </text>
+                <text style="color:white" x=5 y=555>Mental illness may not be the root cause, but it is clearly a factor. </text>
+                <text style="color:white" x=5 y=575> What is the next step that schools should take to combat this? </text>
+            </g>
+            <g class="work annotation">
+                <text style="color:white" x=5 y=515>It is no surprise that financial issues can be part of a shooter's motive.</text>
+                <text style="color:white" x=5 y=535>  We can see so many of the financial related shootings occur at the shooter's place of work. </text>
+                <text style="color:white" x=5 y=555> So, what can work establishments do to resolve financial issues before they go too far?  </text>
+            </g>
+            
+            <div id="legend">
+                <p>
+                    <strong>Relationship to Location of Incident</strong>
+                    <select onchange="filter(this.value)" class="dropbtn">
+                    <div id="dropdowns" class="options">
+                        <option value="all">all relationships</option>
+                        <option value="work">work</option>
+                        <option value="government">government</option>
+                        <option value="recreation">recreation</option>
+                        <option value="residency">residency</option>
+                        <option value="school">school</option>
+                        <option value="None">none</option>
+                        <option value="Unknown">unknown</option>
+                    </div>
+                    </select>
+                </p>
+            </div>
+            
+        <div id="colorKey">
+            <p style="font-family: futura">
+                    Motives:
+<!--                    <li style="color: #0000ff;" onclick="filter('work')">Domestic Dispute</li>-->
+                    <text style="color: #0000ff;">Domestic Dispute</text>
+                    <text style="color: #00A591;">Drug Use</text>
+                    <text style="color: #9400D3;">Drug Use and Financial Difficulties</text>
+                    <text style="color: #00ffff;">Expulsion or Suspension</text>
+                    <text style="color: #F3F315;">Failure</text>
+                    <text style="color: #FF66FF;">Financial Difficulties or Dispute</text>
+                    <text style="color: #888888;">Gender</text>
+                    <text style="color: #aa0000;">Harassment</text>
+                    <text style="color: #6B5B95;">Legal Dispute</text>
+                    <text style="color: #00ff00;">Mental Illness</text>
+                    <text style="color: #2E4A62;">Multiple Motives</text>
+                    <text style="color: #DC4C46;">Political or Religious Ideals</text>
+                    <text style="color: #005960;">Race</text>
+                    <text style="color: #4F84C4;">Rejection</text>
+                    <text style="color: #D2691E;">Robbery</text>
+                    <text style="color: #578CA9;">Social Dispute</text>
+                    <text style="color: #F6D155;">Terminated, Denied, or Reprimanded</text>
+                    <text style="color: #A6A277;">Unknown</text>
+            </p>
+            
+<!--
+            <p class="school annotation">
+                <text x=15 y=600>So many of the mass shootings that have occurred in America can be related to mental illness. <br> Here, it is obvious that so many of those mental illness related shootings occur at schools. <br> Mental illness may not be the root cause, but it is clearly a factor. <br> What is the next step that schools should take to combat this?  </text>
+            </p>
+-->
+            
+
+            
+        </div>
+            
+        </svg>
+
+        <div id="info" style="visibility: hidden;">
+            <span id="title"><strong>title</strong></span>
+            <br>
+            <span id="location">location</span>
+            <br>
+            <span id="date">date</span>
+            <br>
+            <span id="motive">motive</span>
+            <br>
+            <span id="relationship">relationship</span>
+            <br>
+            <span id="injured">injured</span>
+            <br>
+            <span id="killed">killed</span>
+        </div>
+    </body>
+    
+
+<!--
+   <body onload="getData()">
+        <svg id="graph" width="1000" height="500"></svg>
+        <div id="legend">
+        <p>
+            <strong>Relationship to Location of Incident:</strong><br /> 
+            <button onclick="filter('work')">work</button>
+            <button onclick="filter('government')">government</button>
+            <button onclick="filter('recreation')">recreation</button>
+            <button onclick="filter('residency')">residency</button>
+            <button onclick="filter('school')">school</button>
+            <button onclick="filter('None')">none</button>
+            <button onclick="filter('Unknown')">unknown</button>
+            <br />
+        </p>
+    </body>
+-->
+                                               
+</html>
