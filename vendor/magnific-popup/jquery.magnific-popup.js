@@ -1707,7 +1707,8 @@ $.magnificPopup.registerModule('gallery', {
 
                         }
                         if(mfp.index == 2){
-                            window.location.href = 'https://github.com/anne-moshyedi/Data_Visualization';
+                            window.location.href = 'data_visualization/shootings_visualization.html';
+                            
 
                         }
 //						if(mfp.items.length > 1) {
