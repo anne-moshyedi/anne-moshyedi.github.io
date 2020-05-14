@@ -96,7 +96,7 @@
             function calcAge(date){
                 var dateTime = date.getTime();
                 // adjust for leap years and 
-                var seconds = (Date.now() - dateTime)/1000;
+                var seconds = ((Date.now() - dateTime)/1000);
                 var years = Math.floor(seconds / (60 * 60 * 24 * 365));
                 var extra = seconds - (years * 60 * 60 * 24 * 365);
                 var months = Math.floor(extra / (60 * 60 * 24 * 31));
