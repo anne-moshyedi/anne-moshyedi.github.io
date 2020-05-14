@@ -100,10 +100,11 @@
               <img id="personal" src="/anne-moshyedi.github.io/img/personal_pic.jpg">
               <p class="text-faded mb-4" style="color: white">Hello! My name is Anne Moshyedi. You can call me Annie. Currently, I am <span id="age"></span> I am from Potomac, Maryland, a suburb right outside of D.C. </p>
               <script type="text/javascript">
-            var date = new Date(1997, 9, 30, 9, 10, 0, 0);
+            var date = new Date(1997, 9, 30, 10, 10, 0, 0);
             function calcAge(date){
                 var dateTime = date.getTime();
-                var seconds = (Date.now() - dateTime)/1000;
+                // subtract 60 * 60 * 24 * 2 - (60*60) to account for miscalculation
+                var seconds = ((Date.now() - dateTime)/1000) - 169200;
                 var years = Math.floor(seconds / (60 * 60 * 24 * 365));
                 var extra = seconds - (years * 60 * 60 * 24 * 365);
                 var months = Math.floor(extra / (60 * 60 * 24 * 31));
