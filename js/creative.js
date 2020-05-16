@@ -4,16 +4,16 @@
     
   // Smooth scrolling using jQuery easing
   $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
-    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-      var target = $(this.hash);
-      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-      if (target.length) {
-        $('html, body').animate({
-          scrollTop: (target.offset().top - 70)
-        }, 1000, "easeInOutExpo");
-        return false;
-      }
-    }
+//    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+//      var target = $(this.hash);
+//      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+//      if (target.length) {
+//        $('html, body').animate({
+//          scrollTop: (target.offset().top - 70)
+//        }, 1000, "easeInOutExpo");
+//        return false;
+//      }
+//    }
   });    
 
   // Closes responsive menu when a scroll trigger link is clicked
@@ -61,6 +61,23 @@
   $('.popup-gallery').magnificPopup({
     delegate: 'a',
     type: 'image',
+    tLoading: 'Loading project description...',
+    mainClass: 'mfp-img-mobile',
+    gallery: {
+      projNum: 1,
+      enabled: true,
+      navigateByImgClick: true,
+      preload: [0, 1]
+    },
+    image: {
+      tError: '<a href="%url%">The project description</a> could not be loaded.'
+    }
+  });
+    
+  // Magnific popup calls
+  $('.popup-gallery-video').magnificPopup({
+    delegate: 'video',
+    type: 'video',
     tLoading: 'Loading project description...',
     mainClass: 'mfp-img-mobile',
     gallery: {
